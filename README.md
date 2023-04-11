@@ -80,7 +80,7 @@ Typescript を使う場合は、以下のような `tsconfig.json` を作成し�
 
 コンテナ内で `clasp login` を実行すると、`/home/node/.clasprc.json.` が作成されます。
 
-このファイルを `cat` し、出力を全てコピーしてGitHubのリポジトリの [Settings] => [Secrets and variables] => [Actions] => [New repository secret] に `CLASP_TOKEN` という名前で作成します。
+このファイルを `cat` し、出力を全てコピーして GitHub のリポジトリの [Settings] => [Secrets and variables] => [Actions] => [New repository secret] に `CLASP_TOKEN` という名前で作成します。
 
 ```bash
 cat /home/node/.clasprc.json
@@ -88,9 +88,17 @@ cat /home/node/.clasprc.json
 
 ## 開発が終わったらプッシュ
 
-リポジトリをプッシュすると、GitHub Actionsで `.clasp.json` があるフォルダを全て探して、それぞれのフォルダで `clasp push` が行われます。
+リポジトリをプッシュすると、GitHub Actions で `.clasp.json` があるフォルダを全て探して、それぞれのフォルダで `clasp push` が行われます。
 
-## 補足
+# 補足
+
+## コンテナ内で `clasp login` を実行する理由
 
 `clasp login` は必ずコンテナ内で行わないといけないわけではありません。別の端末などで作った `.clasprc.json` の内容を `CLASP_TOKEN` に設定しても構いませんし、手打ちでプロジェクトフォルダや `.clasp.json` を作っても構いません。
-Claspの開発環境セットアップや、プロジェクトの作成などを誰でもできるように、コンテナ内で行うように記載しております。
+Clasp の開発環境セットアップや、プロジェクトの作成などを誰でもできるように、コンテナ内で行うように記載しております。
+
+## `project1` フォルダはなんのためにあるの？
+
+`project1` フォルダはサンプルプロジェクトです。
+
+不要であれば削除し、新しく `clasp create --type standalone --title "project_name"` でフォルダを作成してください。（直下にフォルダを作成すると、GitHub Actions で `clasp push` が実行されないので、必ず `--title` オプションをつけて実行すること）
